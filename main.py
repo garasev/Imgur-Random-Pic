@@ -1,6 +1,4 @@
-# This is a sample Python script.
 import time
-
 import requests
 import random
 import string
