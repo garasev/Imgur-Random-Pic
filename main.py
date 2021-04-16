@@ -35,10 +35,14 @@ class Scraper(multiprocessing.Process):
     def get_pic(self):
         base_url = 'https://i.imgur.com/'
         path = self.gen_path()
-        tmp = ''
-        if random.random() > 0.5:
-            tmp = 'a/'
-        p = requests.get(base_url + tmp + path + '.png')
+        r = random.randint(0, 2)
+        if r == 1:
+            env = 'a/'
+        elif r == 2:
+            env = 'gallery/'
+        else:
+            env = ''
+        p = requests.get(base_url + env + path + '.png')
         if self.check_cache(path):
             out = open(os.path.join(IMG_PATH, path + '.png'), "wb")
             out.write(p.content)
@@ -55,11 +59,7 @@ class Scraper(multiprocessing.Process):
     @staticmethod
     def gen_path():
         length = random.randint(6, 7)
-
-        if random.random() > 0.5:
-            lst = string.ascii_letters + string.digits
-        else:
-            lst = string.ascii_letters
+        lst = string.ascii_letters + string.digits
 
         return ''.join([random.choice(lst) for _ in range(length)])
 
