@@ -1,4 +1,4 @@
-# Finder-Imgur
+# Imgur-Random-Pic
 Script for downloading random screenshots from the site Imgur
 
 ## How to use
